@@ -5,7 +5,7 @@
   "authors": [
     "Stu Robson <stu@alwaystwisted.com>"
   ],
-  "description": "styleguide and pattern library",
+  "description": "a styleguide and pattern library",
   "main": "dist/index.php",
   "keywords": [
     "styleguide"

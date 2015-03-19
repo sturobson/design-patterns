@@ -4,8 +4,6 @@ var gulp        = require('gulp'),
     cssmin      = require('gulp-minify-css'),
     concat      = require('gulp-concat'),
     uglify      = require('gulp-uglify'),
-    jshint      = require('gulp-jshint'),
-    scsslint    = require('gulp-scss-lint'),
     cache       = require('gulp-cached'),
     prefix      = require('gulp-autoprefixer'),
     browserSync = require('browser-sync'),
@@ -15,8 +13,8 @@ var gulp        = require('gulp'),
     imagemin    = require('gulp-imagemin'),
     pngquant    = require('imagemin-pngquant'),
     plumber     = require('gulp-plumber'),
-    deploy      = require('gulp-gh-pages'),
-    notify      = require('gulp-notify');
+    notify      = require('gulp-notify'),
+    connect     = require('gulp-connect-php');
 
 
 gulp.task('scss', function() {
@@ -44,13 +42,13 @@ gulp.task('scss', function() {
     .pipe(gulp.dest('dist/css'))
 });
 
-gulp.task('browser-sync', function() {
+gulp.task('connect-sync', function() {
+  connect.server({}, function(){
     browserSync({
-        server: {
-            baseDir: "dist/"
-        }
+      proxy: 'localhost:8000'
     });
-});
+  });
+})
 
 gulp.task('deploy', function () {
     return gulp.src('dist/**/*')
@@ -66,34 +64,22 @@ gulp.task('js', function() {
     .pipe(reload({stream:true}));
 });
 
-gulp.task('scss-lint', function() {
-  gulp.src('scss/**/*.scss')
-    .pipe(cache('scsslint'))
-    .pipe(scsslint());
-});
-
 gulp.task('minify-html', function() {
     var opts = {
       comments:true,
       spare:true
     };
 
-  gulp.src('./*.html')
+  gulp.src('./*.php')
     .pipe(minifyHTML(opts))
     .pipe(gulp.dest('dist/'))
     .pipe(reload({stream:true}));
 });
 
-gulp.task('jshint', function() {
-  gulp.src('dist/js/j.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
-
 gulp.task('watch', function() {
   gulp.watch('scss/**/*.scss', ['scss']);
-  gulp.watch('js/*.js', ['jshint', 'js']);
-  gulp.watch('./*.html', ['minify-html']);
+  gulp.watch('js/*.js', ['js']);
+  gulp.watch('./*.php', ['minify-html']);
   gulp.watch('img/*', ['imgmin']);
 });
 
@@ -107,4 +93,4 @@ gulp.task('imgmin', function () {
         .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('default', ['browser-sync', 'js', 'imgmin', 'minify-html', 'scss', 'watch']);
+gulp.task('default', ['js', 'imgmin', 'minify-html', 'scss', 'watch', 'connect-sync']);

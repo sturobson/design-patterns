@@ -43,9 +43,11 @@ gulp.task('scss', function() {
 });
 
     gulp.task('connect-sync', function() {
-      connect.server({}, function(){
+      connect.server({
+        baseDir: './dist'
+      }, function(){
         browserSync({
-          proxy: 'localhost:8000/dist'
+          proxy: 'localhost:8000'
         });
       });
     })
@@ -58,6 +60,8 @@ gulp.task('deploy', function () {
 gulp.task('copy', function() {
   gulp.src(['markup/**/*'])
     .pipe(gulp.dest('dist/markup'))
+  gulp.src(['scss/**/*'])
+    .pipe(gulp.dest('dist/'))
   gulp.src(['./index.php', './functions.php'])
     .pipe(gulp.dest('dist/'))
   gulp.src(['./css/sg-style.css'])

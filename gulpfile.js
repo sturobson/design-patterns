@@ -77,6 +77,7 @@ gulp.task('php-serve', ['scss'], function () {
     gulp.watch([
         './*.html',
         './*.php',
+        './scss/**/*.scss',
         './scripts/**/*.js',
         './images/**/*',
         '.tmp/fonts/**/*'

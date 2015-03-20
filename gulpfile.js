@@ -14,7 +14,8 @@ var gulp        = require('gulp'),
     pngquant    = require('imagemin-pngquant'),
     plumber     = require('gulp-plumber'),
     notify      = require('gulp-notify'),
-    connect     = require('gulp-connect-php');
+    connect     = require('gulp-connect-php'),
+    httpProxy   = require('http-proxy');
 
 
 gulp.task('scss', function() {
@@ -40,17 +41,52 @@ gulp.task('scss', function() {
     .pipe(size({ gzip: true, showFiles: true }))
     .pipe(rename({ suffix: '.min' }))
     .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest('css'))
 });
 
-    gulp.task('connect-sync', function() {
-      connect.server({
-        baseDir: './dist'
-      }, function(){
-        browserSync({
-          proxy: 'localhost:8000'
-        });
-      });
-    })
+gulp.task('php-serve', ['scss'], function () {
+    connect.server({
+        port: 9001,
+        base: 'dist',
+        open: false
+    });
+
+    var proxy = httpProxy.createProxyServer({});
+
+    browserSync({
+        notify: false,
+        port  : 9000,
+        server: {
+            baseDir   : ['.tmp', 'dist'],
+            routes    : {
+                '/bower_components': 'bower_components'
+            },
+            middleware: function (req, res, next) {
+                var url = req.url;
+
+                if (!url.match(/^\/(styles|fonts|bower_components)\//)) {
+                    proxy.web(req, res, { target: 'http://127.0.0.1:9001' });
+                } else {
+                    next();
+                }
+            }
+        }
+    });
+
+    // watch for changes
+    gulp.watch([
+        './*.html',
+        './*.php',
+        './scripts/**/*.js',
+        './images/**/*',
+        '.tmp/fonts/**/*'
+    ]).on('change', reload);
+
+    gulp.watch('./styles/**/*.scss', ['styles']);
+    gulp.watch('bower.json', ['wiredep']);
+});
+
+
 
 gulp.task('deploy', function () {
     return gulp.src('dist/**/*')
@@ -66,6 +102,8 @@ gulp.task('copy', function() {
     .pipe(gulp.dest('dist/'))
   gulp.src(['./css/sg-style.css'])
     .pipe(gulp.dest('dist/css/'))
+  gulp.src(['./js/**.js'])
+    .pipe(gulp.dest('dist/js/'))
 });
 
 gulp.task('js', function() {
@@ -106,4 +144,4 @@ gulp.task('imgmin', function () {
         .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('default', ['js', 'imgmin', 'copy', 'scss', 'watch', 'connect-sync']);
+gulp.task('default', ['js', 'imgmin', 'copy', 'scss', 'watch', 'php-serve']);

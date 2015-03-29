@@ -1,6 +1,6 @@
 {
   "name": "design-patterns",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "homepage": "https://github.com/sturobson/design-patterns",
   "authors": [
     "Stu Robson <stu@alwaystwisted.com>"
@@ -15,13 +15,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "test",
-    "tests",
-    "/img",
-    "/js",
-    "/markup",
-    "/css",
-    "/index.php",
-    "/functions.php"
+    "/package.json",
+    "/gulpefile.js"
   ]
 }

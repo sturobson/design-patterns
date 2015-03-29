@@ -1,6 +1,6 @@
 {
   "name": "design-patterns",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "dependencies": {},
   "devDependencies": {
     "browser-sync": "^2.0.0-rc4",

@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="css/sg-style.css">
 
   <!-- Replace below stylesheet with your own stylesheet -->
-  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 

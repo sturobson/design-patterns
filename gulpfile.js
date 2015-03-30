@@ -28,12 +28,12 @@ gulp.task('scss', function() {
     this.emit('end');
   };
 
-  return gulp.src('scss/main.scss')
+  return gulp.src('scss/styles.scss')
   .pipe(plumber({errorHandler: onError}))
   .pipe(sass())
   .pipe(size({ gzip: true, showFiles: true }))
   .pipe(prefix())
-  .pipe(rename('main.css'))
+  .pipe(rename('styles.css'))
   .pipe(gulp.dest('css'))
   .pipe(reload({stream:true}))
 });
@@ -48,7 +48,7 @@ gulp.task('scss:dist', function() {
     this.emit('end');
   };
 
-  return gulp.src('scss/main.scss')
+  return gulp.src('scss/styles.scss')
   .pipe(plumber({errorHandler: onError}))
   .pipe(sass())
   .pipe(prefix())

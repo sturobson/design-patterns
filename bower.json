@@ -14,9 +14,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "./package.json",
-    "./gulpefile.js",
-    "css"
+    "bower_components"
   ]
 }

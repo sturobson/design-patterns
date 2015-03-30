@@ -8,7 +8,6 @@ var gulp        = require('gulp'),
     prefix      = require('gulp-autoprefixer'),
     browserSync = require('browser-sync'),
     reload      = browserSync.reload,
-    minifyHTML  = require('gulp-minify-html'),
     size        = require('gulp-size'),
     imagemin    = require('gulp-imagemin'),
     pngquant    = require('imagemin-pngquant'),
@@ -77,18 +76,6 @@ gulp.task('js', function() {
     .pipe(reload({stream:true}));
 });
 
-gulp.task('minify-html', function() {
-    var opts = {
-      comments:true,
-      spare:true
-    };
-
-  gulp.src('./*.php')
-    .pipe(minifyHTML(opts))
-    .pipe(gulp.dest('dist/'))
-    .pipe(reload({stream:true}));
-});
-
 gulp.task('watch', function() {
   gulp.watch('scss/**/*.scss', ['scss']);
   gulp.watch('js/*.js', ['js']);
@@ -108,4 +95,4 @@ gulp.task('imgmin', function () {
 
 gulp.task('default', ['js', 'imgmin', 'copy', 'scss', 'watch', 'connect-sync']);
 
-gulp.task('default', ['copy', 'scss', 'connect-sync']);
+gulp.task('serve', ['copy', 'scss', 'connect-sync']);

@@ -1,19 +1,14 @@
-// Variables
+// Imports global variable file
 
 @import "_config";
 
+// Imports defulat configuration files
 
 @import "_config/_mixins",
         "_config/_fontstacks",
         "_config/_reset",
         "_config/_helpers";
 
-// -------------------------------------
-//   import the partials
-// -------------------------------------
+// Imports patterns
 
-@import "patterns/import-me";
-
-
-// Print styles
-@import "_config/print";
+@import "_patterns/import-me";

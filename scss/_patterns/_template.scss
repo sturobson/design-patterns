@@ -1,13 +1,15 @@
-// Title
+// Title Thing
 //
-// Description
+// Description Thing
 //
-// Variations
-//
-// Markup:
-//
-//
-//
-// Styleguide 1.2
 
 
+// Local Variables
+
+$thing: #BADA55;
+
+// CSS
+
+.thing {
+  color: $thing;
+}

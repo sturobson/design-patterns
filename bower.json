@@ -14,6 +14,13 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components"
+    "bower_components",
+    "scss/_config",
+    "scss/_config.scss",
+    "scss/_styles.scss",
+    "./gitignore",
+    "./bower.json",
+    "./package.json",
+    "./gulpfile.js"
   ]
 }

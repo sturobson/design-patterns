@@ -90,8 +90,7 @@ gulp.task('php-serve', ['scss'], function () {
     './*.php',
     './scss/**/*.scss',
     './scripts/**/*.js',
-    './images/**/*',
-    '.tmp/fonts/**/*'
+    './images/**/*'
   ]).on('change', reload);
 
   gulp.watch('./styles/**/*.scss', ['styles']);
@@ -139,4 +138,4 @@ gulp.task('imgmin', function () {
 
 gulp.task('default', ['js', 'imgmin', 'scss', 'watch', 'connect-sync']);
 gulp.task('build', ['js', 'imgmin', 'scss:dist', 'copy:dist', 'scss:dist']);
-gulp.task('serve', ['scss', 'connect-sync']);
+gulp.task('serve', ['scss', 'copy', 'connect-sync']);

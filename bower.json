@@ -1,6 +1,6 @@
 {
   "name": "design-patterns",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/sturobson/design-patterns",
   "authors": [
     "Stu Robson <stu@alwaystwisted.com>"
@@ -14,13 +14,6 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "scss/_config",
-    "scss/_config.scss",
-    "scss/_styles.scss",
-    "./gitignore",
-    "./bower.json",
-    "./package.json",
-    "./gulpfile.js"
+    "bower_components"
   ]
 }

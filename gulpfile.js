@@ -31,22 +31,12 @@ gulp.task('scss', function() {
   return gulp.src('scss/styles.scss')
   .pipe(plumber({errorHandler: onError}))
   .pipe(sass())
-  .pipe(size({ gzip: true, showFiles: true }))
   .pipe(prefix())
   .pipe(rename('styles.css'))
   .pipe(gulp.dest('css'))
   .pipe(reload({stream:true}))
 });
 gulp.task('scss:dist', function() {
-  var onError = function(err) {
-    notify.onError({
-      title:    "Gulp",
-      subtitle: "Failure!",
-      message:  "Error: <%= error.message %>",
-      sound:    "Beep"
-    })(err);
-    this.emit('end');
-  };
 
   return gulp.src('scss/styles.scss')
   .pipe(plumber({errorHandler: onError}))
@@ -54,6 +44,7 @@ gulp.task('scss:dist', function() {
   .pipe(prefix())
   .pipe(cssmin())
   .pipe(size({ gzip: true, showFiles: true }))
+  .pipe(rename('styles.css'))
   .pipe(gulp.dest('dist/css'))
 });
 

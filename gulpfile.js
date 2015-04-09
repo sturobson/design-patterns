@@ -111,12 +111,6 @@ gulp.task('js', function() {
   .pipe(reload({stream:true}));
 });
 
-gulp.task('watch', function() {
-  gulp.watch('scss/**/*.scss', ['scss']);
-  gulp.watch('js/*.js', ['js']);
-  gulp.watch('img/*', ['imgmin']);
-});
-
 gulp.task('imgmin', function () {
   return gulp.src('img/*')
   .pipe(imagemin({
@@ -127,6 +121,6 @@ gulp.task('imgmin', function () {
   .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task('default', ['js', 'imgmin', 'scss', 'watch', 'connect-sync']);
-gulp.task('build', ['js', 'imgmin', 'scss:dist', 'copy:dist', 'scss:dist']);
+gulp.task('default', ['js', 'imgmin', 'scss', 'copy', 'connect-sync']);
+gulp.task('build', ['js', 'imgmin', 'scss:dist', 'copy:dist']);
 gulp.task('serve', ['scss', 'copy', 'connect-sync']);

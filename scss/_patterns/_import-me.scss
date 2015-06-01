@@ -1,5 +1,8 @@
-body {
- font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;
+.sg-container {
+  max-width: 1024px;
+  margin: 0 auto;
+//  font-family: "Kootenay Pro Logos",serif;
+  font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;
 }
 
 /* -------------------------------------------------------------------------
@@ -21,9 +24,7 @@ Colors
 /* -------------------------------------------------------------------------
 Fonts
 ---------------------------------------------------------------------------- */
-.sg-font-primary {font-family: "HelveticaNeue", "Helvetica", Arial, sans-serif;}
 
-.sg-font-secondary {font-family: Georgia, Times, "Times New Roman", serif;}
 
 
 /* -------------------------------------------------------------------------
@@ -111,6 +112,6 @@ Breadcrumbs
  padding: 0 5px;
 }
 
-.breadcrumb .active {
+.breadcrumb .is-active {
  color: #555;
 }

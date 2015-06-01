@@ -1,10 +1,13 @@
 <?php include_once('functions.php'); ?>
 <!DOCTYPE html>
-<html lang="en">
+<html class="no-js" lang="en">
 <head>
 <meta charset="utf-8">
   <title>Style Guide Boilerplate</title>
   <meta name="viewport" content="width=device-width">
+  <script>document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');</script>
+  <!-- CSS for MT Design Language -->
+  <link type="text/css" rel="stylesheet" href="http://fast.fonts.net/cssapi/4f7b4a54-5fc4-4d1c-9793-69e50e98b653.css" />
   <!-- Style Guide Boilerplate Styles -->
   <link rel="stylesheet" href="css/sg-style.css">
 
@@ -71,8 +74,9 @@
     <?php showMarkup('patterns'); ?>
     </div><!--/.sg-pattern-styles-->
   </div><!--/.sg-body-->
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="js/sg-plugins.js"></script>
   <script src="js/sg-scripts.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

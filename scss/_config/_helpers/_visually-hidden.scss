@@ -7,7 +7,7 @@
 	padding: 0;
 	position: absolute;
 	width: 1px;
-	&.focusable:active,
+	&.focusable:is-active,
 	&.focusable:focus {
 		clip: auto;
 		height: auto;

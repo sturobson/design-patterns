@@ -79,12 +79,11 @@ gulp.task('php-serve', ['scss'], function () {
   gulp.watch([
     './*.html',
     './*.php',
-    './scss/**/*.scss',
     './scripts/**/*.js',
     './images/**/*'
   ]).on('change', reload);
 
-  gulp.watch('./styles/**/*.scss', ['styles']);
+  gulp.watch('./styles/**/*.scss', ['scss']);
   gulp.watch('bower.json', ['wiredep']);
 });
 
@@ -93,7 +92,7 @@ gulp.task('deploy', function () {
   .pipe(deploy());
 });
 
-gulp.task('copy:dist', function() {
+gulp.task('copy', function() {
   gulp.src(['markup/**/*'])
   .pipe(gulp.dest('dist/markup'))
   gulp.src(['./index.php', './functions.php'])
